@@ -1,0 +1,86 @@
+bitnami amp stack
+설치시 아이디 비밀번호는 root / 111111 로 해주세요.
+
+Windows : https://bitnami.com/stack/wamp
+MacOS : https://bitnami.com/stack/mamp
+Linux : https://bitnami.com/stack/lamp
+
+vscode
+https://code.visualstudio.com
+
+MySQL WorkBench
+https://dev.mysql.com/downloads/workbench/
+
+실행
+mac
+cd /Applications/mampstack-7.1.14-0/mysql/bin
+./mysql -uroot -p 
+
+windows
+cd C:\Bitnami\wampstack-7.1.26-0\mysql\bin
+mysql -uroot -p
+
+실습코드
+sql
+create table topic(
+    id int not null,
+    title varchar(20) not null,
+    description text null,
+    author_name varchar(30) not null,
+    author_profile varchar(100),
+    created datetime
+);
+ALTER TABLE `topic` ADD PRIMARY KEY( `id`);
+ALTER TABLE `topic` CHANGE `id` `id` INT(11) NOT NULL AUTO_INCREMENT;
+INSERT INTO topic (title, description, created, author_name, author_profile) VALUES('MySQL', 'MySQL is ...', NOW(), 'egoing', 'web developer');
+INSERT INTO topic (title, description, created, author_name, author_profile) VALUES('ORACLE', 'ORACLE is ...', NOW(), 'egoing', 'web developer');
+INSERT INTO topic (title, description, created, author_name, author_profile) VALUES('SQL Server', 'SQL Server is ...', NOW(), 'duru', 'DBA');
+INSERT INTO topic (title, description, created, author_name, author_profile) VALUES('MongoDB', 'MongoDB is ...', NOW(), 'khan', 'DBA');
+SELECT id,title,created FROM topic WHERE id > 1 ORDER BY id DESC;
+UPDATE topic SET title = 'Oracle' WHERE id = 2;
+DELETE FROM topic WHERE id = 4;
+CREATE TABLE `author` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(30) NOT NULL,
+  `profile` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`)
+) ;
+INSERT INTO author (id, name, profile) VALUES(1, 'egoing', 'web developer');
+INSERT INTO author (id, name, profile) VALUES(2, 'duru', 'DBA');
+INSERT INTO author (id, name, profile) VALUES(3, 'khan', 'MongoDB admin');
+ALTER TABLE `topic` ADD `author_id` INT NOT NULL AFTER `created`;
+ALTER TABLE `topic`
+  DROP `author_name`,
+  DROP `author_profile`;
+UPDATE topic SET author_id = 1 WHERE id = 1;
+UPDATE topic SET author_id = 1 WHERE id = 2;
+UPDATE topic SET author_id = 2 WHERE id = 3;
+SELECT * FROM topic LEFT JOIN author ON topic.author_id = author.id;
+php
+<ul>
+<?php
+$dbname = '';
+$conn = mysqli_connect('127.0.0.1', 'root', '111111');
+mysqli_select_db($conn, $dbname);
+$result = mysqli_query($conn, "SELECT * FROM topic");
+while($row = mysqli_fetch_array($result)){
+    echo "<li>{$row['title']}</li>";
+}
+?>
+</ul>
+
+혼자 공부하는 방법
+database1 : https://opentutorials.org/course/3162
+mysql : https://opentutorials.org/course/3161
+지식지도 : https://seomal.org
+
+문제해결
+php가 데이터베이스와 상호작용을 할 때 느리다면 localhost -> 127.0.0.1로 hostname을 변경해보세요.
+phpMyAdmin이 느리다면 app/phpmyadmin/htdocs/config.inc.php 의 내용 중 일부를 $cfg['Servers'][$i]['host'] = '127.0.0.1';로 변경해주세요.
+ Pages 3
+Find a Page…
+Home
+database mysql
+git sourcetree
+Clone this wiki locally
+https://github.com/egoingsb/offline.wiki.git
