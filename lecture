@@ -111,16 +111,84 @@ MySQL은
 매뉴얼을 볼 수 있어야 함
 
 데이터베이스를 깔고, 명령어를 통해 실행시키고, 데어터베이스에 접속
+메모장에 명령어를 쓰고, 복사해서 실행
 
+# 테이블 만들기
+CREATE TABLE topic (
+	id INT(11),
+	title VARCHAR(50),
+	description TEXT,
+	created DATETIME,
+	author_name VARCHAR(20),
+	author_profile VARCHAR(100)	
+);
 
+정보기술은 사소한 것에 들어가지 않음
+실수하면, 진짜 심각한 것은 타격이 온다면 수동으로 하지 않음
 
+엑셀은 기본적으로 관대해, 데이터를 저장할 때 편한데, 끄낼 때는 힘들어
+애플리케이션을 개발해 보면, 숫자가 저장되어 있는지, 문자가 저장되어 있는지 모르면 끄낼 때마다 확인해야 함
 
+엑셀은 종이컵, 데이터베이스는 물병으로 비유
+까다로움이 공감되면 고마워
+데이터베이스는 엄격하게 데이터를 관리함
 
+회사에서 SQL을 가르치면서, 생활코딩의 시작이 됨
+데이터베이스에 인생을 갈아넣지 않더라도, 
+SQL은 Structured Query Language (구조화된 질의 언어)
 
+# 테이블에 데이터 추가하기
+INSERT INTO topic
+	(id, title, description, created, author_name, author_profile)
+	VALUES(
+		1,
+		'MySQL',
+		'MySQL is ...',
+		NOW(),
+		'egoing',
+		'developer'
+	);
+	
+INSERT INTO topic
+	(id, title, description, created, author_name, author_profile)
+	VALUES(
+		2,
+		'Oracle',
+		'Oracle is ...',
+		NOW(),
+		'egoing',
+		'developer'
+	);
+	
+INSERT INTO topic
+	(id, title, description, created, author_name, author_profile)
+	VALUES(
+		3,
+		'SQL Server',
+		'SQL Server ...',
+		NOW(),
+		'duru',
+		'DBA'
+	);
 
+INSERT INTO topic
+	(id, title, description, created, author_name, author_profile)
+	VALUES(
+		4,
+		'MongoDB',
+		'MongoDB is ...',
+		NOW(),
+		'khan',
+		'NoSQL DBA'
+	);
 
+# Read
+내가 가져오고 싶은 데이터를 선택한다.
 
+SELECT *
+FROM topic;
 
-
-
+SELECT * 
+FROM topic
+WHERE id = 1;
 
